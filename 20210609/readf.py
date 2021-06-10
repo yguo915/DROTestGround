@@ -4,7 +4,6 @@ import numpy as np
 import math
 import os
 
-global arr
 
 def readf(dir):
     if not os.path.exists(dir):
@@ -12,13 +11,10 @@ def readf(dir):
 
     arr = np.loadtxt(dir)
     size = np.size(arr)
-    n = int(round(size**(1. /3)))
+    n = int(round(size ** (1. / 3)))
 
-    if size != math.pow(n,3):
+    if size != math.pow(n, 3):
         raise ValueError("Wrong tissue data. Unable to reshape.")
 
-    arr = arr.reshape(n,n,n)
-    return  arr
-
-
-
+    arr = arr.reshape(n, n, n)
+    return arr
