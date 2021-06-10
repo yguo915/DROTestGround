@@ -5,7 +5,7 @@ import math
 import os
 
 
-def readf(dir):
+def read_file(dir):
     if not os.path.exists(dir):
         raise OSError("File not found.")
 
@@ -14,7 +14,7 @@ def readf(dir):
     n = int(round(size ** (1. / 3)))
 
     if size != math.pow(n, 3):
-        raise ValueError("Wrong tissue data. Unable to reshape.")
+        raise ValueError("Wrong tissue data size. Unable to reshape to 3 dimension matrix.")
 
     arr = arr.reshape(n, n, n)
     return arr

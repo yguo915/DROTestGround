@@ -1,13 +1,13 @@
-import readf as rf
+import readf as readf
 import numpy as np
 
 
 class DRO:
     def __init__(self, dir, numthread=-1):
-        self.arr = rf.readf(dir)
+        self.tissue_arr3D = readf.read_file(dir)
 
-    def getTissue(self):
-        return self.arr
+    def get_tissue(self):
+        return self.tissue_arr3D
 
-    def getTissueSize(self):
-        return self.arr.shape
+    def get_tissue_size(self):
+        return self.tissue_arr3D.shape
