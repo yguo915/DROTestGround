@@ -14,7 +14,7 @@ def read_file(dir):
     n = int(round(size ** (1. / 3)))
 
     if size != math.pow(n, 3):
-        raise ValueError("Wrong tissue data size. Unable to reshape to 3 dimension matrix.")
+        raise ValueError("Unable to reshape tissue sample to 3 dimension matrix.")
 
     arr = arr.reshape(n, n, n)
     return arr
