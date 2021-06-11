@@ -2,7 +2,7 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 import numpy as np
 import math
-
+import ntpath
 
 
 def read_file(dir):
@@ -15,3 +15,8 @@ def read_file(dir):
 
     arr = arr.reshape(n, n, n)
     return arr
+
+
+def add_to_list(tissue_list, file_list, path):
+    tissue_list.append(read_file(path))
+    file_list.append(ntpath.basename(path))

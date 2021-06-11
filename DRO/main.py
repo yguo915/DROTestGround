@@ -3,7 +3,6 @@ import readf as readf
 import numpy as np
 import DRO as dro
 import os
-import ntpath
 
 
 def main():
@@ -19,26 +18,40 @@ def main():
     while True:
         try:
             directory = input("Enter the directory:\n")
-            if directory.endswith(".txt"):
+            if directory == "-1":
+                break
+            elif directory.endswith(".txt"):
                 tissue_list.append(t.Tissue(readf.read_file(directory)))
-                add_to_list(tissue_list, file_list, directory)
+                readf.add_to_list(tissue_list, file_list, directory)
             else:
                 for entry in os.scandir(directory):
                     if (entry.path.endswith(".txt")) and entry.is_file():
-                        add_to_list(tissue_list, file_list, entry.path)
-            break
+                        readf.add_to_list(tissue_list, file_list, entry.path)
+            print("Load Files Successfully! Enter \" help \" to see the list of commands.")
+
+            while True:
+                user_input = input("")
+                if user_input == "-1":
+                    break
+
+                elif user_input == "help":
+                    print(" file: See the list of loaded file. \n"
+                          "-1: Exit")
+
+                elif user_input == "file":
+                    [print(filename) for filename in file_list]
+
+                else:
+                    print("Invalid input! Enter \" help \" to see the list of commands.")
+
         except OSError:
             print("Directory not found.")
 
-    for tissue in tissue_list:
-        print(tissue.get_tissue())
-        break
-        # dro.main(tissue)
 
-
-def add_to_list(tissue_list, file_list, path):
-    tissue_list.append(t.Tissue(readf.read_file(path)))
-    file_list.append(ntpath.basename(path))
+# for tissue in tissue_list:
+#   print(tissue.get_tissue())
+#  break
+# dro.main(tissue)
 
 
 if __name__ == '__main__':
