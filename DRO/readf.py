@@ -2,13 +2,10 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 import numpy as np
 import math
-import os
+
 
 
 def read_file(dir):
-    if not os.path.exists(dir):
-        raise OSError("File not found.")
-
     arr = np.loadtxt(dir)
     size = np.size(arr)
     n = int(round(size ** (1. / 3)))
