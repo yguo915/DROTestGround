@@ -70,6 +70,9 @@ def main():
                             print("1:", tissue.get_ratio(1))
                             print("2:", tissue.get_ratio(2))
 
+                        elif user_input2 == "plot":
+                            tissue.vascular_plot3D("vascular.png")
+
                         else:
                             print("Invalid input! Enter \" help \" to see the list of commands.")
 
