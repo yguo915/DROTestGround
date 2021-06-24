@@ -60,7 +60,7 @@ def DR2_micro(DR2_micro_arr, signal_arr,time_arr,  tissue, pulse, aiffull, Ktran
 
     with Pool(processes=os.cpu_count()) as pool:
         DR2_micro_arr[:, NR, PP] = np.array(pool.starmap(get_DR2_micro, zip(repeat(tissue), time_arr)))
-        signal_arr[:,NR,PP] = np.array(pool.starmap(get_DSC_signal_cp, zip(repeat(tissue),repeat(pulse), time_arr)))
+        #signal_arr[:,NR,PP] = np.array(pool.starmap(get_DSC_signal_cp, zip(repeat(tissue),repeat(pulse), time_arr)))
 
 
     tissue.set_DR2_micro(DR2_micro_arr)
