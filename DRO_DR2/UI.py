@@ -25,22 +25,22 @@ class UI(tk.Frame):
 
         self.upload_tissue_button = tk.Button(self.master, text = "upload tissue",font = ("Arial", 18), command = self.upload_file)
 
-        self.bar = tk.Label(self.master, text="####################################################################################)", fg="black", width=80, height=5,
-                              font=("Arial", 12))
+        # self.bar = tk.Label(self.master, text="####################################################################################)", fg="black", width=80, height=5,
+        #                       font=("Arial", 12))
 
         self.title.pack()
         self.upload_tissue_button.pack()
-        self.bar.pack()
+        # self.bar.pack()
 
     def upload_file(self):
-        arterial_input_function_full = np.array(np.loadtxt(
-            "C:/Users/user/PycharmProjects/yijieDRO/DROTestGround/DROTestGround/input/aiffull_modified.txt"))
-        Ktrans = np.array(np.loadtxt("C:/Users/user/PycharmProjects/yijieDRO/DROTestGround/DROTestGround/input/Ktrans.txt"))
-        CBF = np.array(np.loadtxt("C:/Users/user/PycharmProjects/yijieDRO/DROTestGround/DROTestGround/input/CBF.txt"))
-        Cell_size = np.array(np.loadtxt("C:/Users/user/PycharmProjects/yijieDRO/DROTestGround/DROTestGround/input/CellSize.txt"))
-
-        mat_fname = "C:/Users/user/PycharmProjects/yijieDRO/DROTestGround/DROTestGround/input/transitmatrix_274625.mat"
-        mat_contents = sio.loadmat(mat_fname)
+        dir = os.getcwd()
+        os.chdir(dir)
+        arterial_input_function_full = np.array(np.loadtxt(dir+
+            "/input/aiffull_modified.txt"))
+        Ktrans = np.array(np.loadtxt(dir+"/input/Ktrans.txt"))
+        CBF = np.array(np.loadtxt(dir+"/input/CBF.txt"))
+        Cell_size = np.array(np.loadtxt(dir+"/input/CellSize.txt"))
+        mat_contents = sio.loadmat(dir+"/input/transitmatrix_274625.mat")
         transit_matrix = mat_contents["transitmatrix_274625"]
 
 

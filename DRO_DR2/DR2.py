@@ -69,12 +69,12 @@ class DRO_DR2():
         print("run time:", total_time)
         np.savetxt("dr2_total.txt", DR2_total.reshape(120, 1), comments = "run time:"+ str (total_time))
 
-        # plt.figure(1)
-        # plt.clf()
-        # fig, ax = plt.subplots(num=1)
-        # ax.plot(np.arange(120), DR2_total.reshape(120, 1), 'k--', label='Python_DR2_micro', color="b")
-        # ax.legend(loc='best')
-        # plt.show()
+        plt.figure(1)
+        plt.clf()
+        fig, ax = plt.subplots(num=1)
+        ax.plot(np.arange(120), DR2_total.reshape(120, 1), 'k--', label='Python_DR2_micro', color="b")
+        ax.legend(loc='best')
+        plt.show()
 
 
 
@@ -161,11 +161,6 @@ def get_DSC_signal_cp(tissue, pulse, nfile):
                 M = cp.multiply(M, dephase_matrix)
 
                 print(nt)
-
-                # for i in range(0,274624):
-                #     M[i] = M[i] * dephase_matrix[i]
-
-        #         print(nt)
         M = cp.asnumpy(M)
         sum = np.sum(M)
         return sum

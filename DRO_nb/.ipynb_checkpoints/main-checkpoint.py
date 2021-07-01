@@ -1,4 +1,4 @@
-import DRO as dro
+import DRO_nb as dro
 import readf as readf
 import tissue_info as tissue_info
 import matplotlib.pyplot as plt
@@ -12,7 +12,7 @@ def main():
     dir = "/Users/yijieguo/PycharmProjects/BNI_Summer2021/DROTestGround/tissue/tissueVpVcMets040857_65_65_65.txt"
 
     tissue_arr3D = readf.read_file(dir)
-    tissue = dro.DRO(tissue_arr3D)
+    tissue = DRO_nb.DRO(tissue_arr3D)
 
     cell = tissue.get_cell()
     vascular = tissue.get_vascular()
