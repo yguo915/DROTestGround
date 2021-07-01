@@ -31,6 +31,7 @@ class Tissue:
 
         self.DR2_micro = np.array([])
         self.DR2_meso = np.array([])
+        self.DR2_total = np.array([])
         self.signal = np.array([])
         self.relaxation_matrix = np.array([])
         self.transit_matrix = np.array([])
@@ -70,6 +71,9 @@ class Tissue:
     def set_DR2_meso(self, DR2_meso):
         self.DR2_meso = DR2_meso
 
+    def set_DR2_total(self, DR2_total):
+        self.DR2_total= DR2_total
+
     def set_signal(self, signal):
         self.signal = signal
 
@@ -78,6 +82,9 @@ class Tissue:
 
     def get_DR2_meso(self):
         return self.DR2_meso
+
+    def get_DR2_total(self):
+        return self.DR2_total
 
     def get_signal(self):
         return self.signal
@@ -118,7 +125,3 @@ class Tissue:
 
     def set_Dfree(self, D_free_water):
         self.Dfree = D_free_water
-
-# slice1: [x, y, 0] slice2: [x, y, 1]......
-# tissue32 = tissue_arr3D[:,:,31]
-# print(tissue_info.get_ratio(tissue32, 1))

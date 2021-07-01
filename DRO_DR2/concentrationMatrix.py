@@ -10,11 +10,11 @@ import matplotlib.pyplot as plt
 
 def concentration_matrix(tissue, CBF, Ktrans, aiffull):
     # --------------Default Parameters--------------------#
-    sus_factor = 2.7 * 10 ** -8
-    rp = 50
-    re = 90
-    fac1 = 1
-    Hct_small = 0
+    sus_factor = 2.7 * 10 ** -8 # change based on contrast agent
+    # rp = 50
+    # re = 90
+    # fac1 = 1
+    Hct_small = 0 #hematocrit level
 
     dose1 = 0  # when pp =1
     dose2 = 1
@@ -24,7 +24,7 @@ def concentration_matrix(tissue, CBF, Ktrans, aiffull):
     vp = tissue.get_ratio(2)
     CBV = vp * 100
     ve = np.array([1 - vi - vp])
-    ps = np.array([100 * Ktrans/ fac1])
+    ps = np.array([100 * Ktrans])
 
     def pre(Npts,CB,CV,dose):
         cs0 = np.zeros(2)
@@ -61,8 +61,8 @@ def concentration_matrix(tissue, CBF, Ktrans, aiffull):
 
         CBF_unit = CBF / 60
         CBV_unit = CBV
-        vp = CBV / 100 * (1 - Hct_small) * fac1
-        ftm = CBF_unit * (1 - Hct_small) * fac1
+        vp = CBV / 100 * (1 - Hct_small)
+        ftm = CBF_unit * (1 - Hct_small)
         vptm = vp
         vetm = ve
 

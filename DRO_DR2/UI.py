@@ -4,10 +4,13 @@ from tkinter.filedialog import askopenfilename
 import numpy as np
 import cupy as cp
 import os
+import scipy.io as sio
 
 import Tissue as t
+import Pulse as p
 import readf as readf
-import oneTissue as ot
+import DR2 as dr2
+import concentrationMatrix as cm
 
 class UI(tk.Frame):
     def __init__(self, master = None):
@@ -36,16 +39,26 @@ class UI(tk.Frame):
         CBF = np.array(np.loadtxt("C:/Users/user/PycharmProjects/yijieDRO/DROTestGround/DROTestGround/input/CBF.txt"))
         Cell_size = np.array(np.loadtxt("C:/Users/user/PycharmProjects/yijieDRO/DROTestGround/DROTestGround/input/CellSize.txt"))
 
+        mat_fname = "C:/Users/user/PycharmProjects/yijieDRO/DROTestGround/DROTestGround/input/transitmatrix_274625.mat"
+        mat_contents = sio.loadmat(mat_fname)
+        transit_matrix = mat_contents["transitmatrix_274625"]
+
 
         file_path =  askopenfilename()
         PP = 0
         NR = 0
-        global tissue
         tissue = t.Tissue(readf.read_txt_to_arr3D(file_path), Cell_size[NR])
+        pulse = p.Pulse()
+        #cm.concentration_matrix(tissue, CBF, Ktrans, arterial_input_function_full)
+
         print(tissue.get_tissue_shape())
-        ot.main(tissue, arterial_input_function_full, Ktrans, CBF, PP, NR)
+        #ot.main(tissue, arterial_input_function_full, Ktrans, CBF, PP, NR)
+        # print(DR2.tissue.get_DR2_total())
+        DR2 = dr2.DRO_DR2(tissue, pulse, arterial_input_function_full, Ktrans, CBF, transit_matrix, NR, PP)
+        DR2.get_DR2_total()
 
 if __name__ == '__main__':
+    global tissue
     root = tk.Tk()
     app = UI(master = root)
     app.mainloop()
